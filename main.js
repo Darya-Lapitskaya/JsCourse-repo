@@ -9,7 +9,7 @@ Steps:
 
 const fs = require('fs-extra')
 const prompt = require('prompt-sync')();
-const dir1 = prompt('Please enter a name for the first folder...');
+const dir1 = prompt('Please enter a name for the first folder...111');
 fs.emptyDirSync(dir1) //create the first folder
 const fileName = prompt('Please enter a name for the file to be created (with .txt extention)...');
 fs.ensureFileSync(dir1+'/'+fileName) // create the file
