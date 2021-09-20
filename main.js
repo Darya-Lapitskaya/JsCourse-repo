@@ -9,7 +9,7 @@ Steps:
 
 const fs = require('fs-extra')
 const prompt = require('prompt-sync')();
-const dir1 = prompt('Please enter a name for the first folder...111');
+const dir1 = prompt('Please enter a name for the first folder...');
 fs.emptyDirSync(dir1) //create the first folder
 const fileName = prompt('Please enter a name for the file to be created (with .txt extention)...');
 fs.ensureFileSync(dir1+'/'+fileName) // create the file
@@ -19,3 +19,4 @@ fs.moveSync(dir1+'/'+fileName, dir2+'/'+fileName) //move file from the first fol
 fs.emptyDirSync(dir2) //delete the file by deletion of the content of the second folder
 fs.removeSync(dir1) //delete the first folder
 fs.removeSync(dir2) //delete the second folder
+console.log('Change for 2nd brach');
