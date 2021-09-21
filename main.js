@@ -19,6 +19,6 @@ fs.moveSync(dir1+'/'+fileName, dir2+'/'+fileName) //move file from the first fol
 fs.emptyDirSync(dir2) //delete the file by deletion of the content of the second folder
 fs.removeSync(dir1) //delete the first folder
 fs.removeSync(dir2) //delete the second folder
-console.log('Main branch1');
+console.log('Main branch2');
 
 
