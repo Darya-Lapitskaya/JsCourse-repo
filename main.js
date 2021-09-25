@@ -21,3 +21,4 @@ fs.removeSync(dir1) //delete the first folder
 fs.removeSync(dir2) //delete the second folder
 console.log('Branch2');
 
+
