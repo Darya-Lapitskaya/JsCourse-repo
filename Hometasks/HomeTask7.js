@@ -41,7 +41,7 @@ arrSecondNum.forEach(function (item,index){
     {numByValue++}
 });
 console.log(`Ttl number by index&value: ${numByAll}`);
-console.log(`Ttl number by value only: ${numByValue}`);
+console.log(`Ttl number by value only: ${numByValue-numByAll}`);
 
 
 //Task5 - sort by asc, desc
