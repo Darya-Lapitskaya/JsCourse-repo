@@ -14,6 +14,7 @@
     "co-prompt": "^1.0.0",
     "fs-extra": "^10.0.0",
     "prompt-confirm": "^2.0.4",
+    "prompt-promise": "^1.0.3",
     "prompt-sync": "^4.2.0",
     "prompts": "^2.4.1"
   }
