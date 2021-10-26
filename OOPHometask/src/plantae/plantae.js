@@ -1,5 +1,5 @@
 class Plantae {
-    constructor(height,) {
+    constructor(height) {
         this.height = height;
 
     }
