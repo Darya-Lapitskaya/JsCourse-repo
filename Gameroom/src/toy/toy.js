@@ -51,8 +51,9 @@ class Toy {
     }
 
     set manufacturer(manufacturer) {
-        this_manufacturer = manufacturer;
+        this._manufacturer = manufacturer;
     }
+    
 
 }
 
