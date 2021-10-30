@@ -1,5 +1,5 @@
 class GameRoom {
-    constructor(location, budget = 0, pricePerKid=0) {
+    constructor(location, budget = 0, pricePerKid = 0) {
         this.location = location;
         this.budget = budget;
         this.pricePerKid = pricePerKid;
@@ -31,20 +31,17 @@ class GameRoom {
         this._pricePerKid = pricePerKid;
     }
 
-    addBudget(additionalBudget) {
-        this.budget = this.budget + additionalBudget;
+    addBudget(budget) {
+        this.budget = this.budget + budget;
     }
 
-    addToys(toy) {
-        this.toysPool.push(toy);
+    addKidsPool(kids) {
+        this.kidsPool = [...this.kidsPool, ...kids];
     }
 
-    addKid(kid) {
-        this.kidsPool.push(kid);
-        this.budget = this.budget+this.pricePerKid;
+    toysFilterByPrice(price) {
+        return this.toysPool.find((toy) => toy.budget >= price);
     }
-
-
 }
 
 module.exports = GameRoom;
