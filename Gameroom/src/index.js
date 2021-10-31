@@ -40,35 +40,33 @@ let toys2 = [
     new Toy(10, 'big', '10', 'wood', 'orange', 'new3'),
 ];
 
-let filter =
-{
-    "price": 10,
-    "color": "blue"
-};
-filter.material = "wood";
-
-let filteredArr = [];
-filteredArr = toys.filter(function (item) {
-    for (let key in filter) {
-        if (item[key] === undefined || item[key] != filter[key])
-            return false;
-    }
-    return true;
-});
-
-console.log(filteredArr);
-
 let toy1 = new Toy(100, 'big', '10', 'wood', 'orange', 'new3');
-let room = new GameRoomBuilder(12).addKidsPool(kids).addToysPool(toys).build();
+let room = new GameRoomBuilder(100).addKidsPool(kids).addToysPool(toys).build();
 console.log(room.budget);
-room.addToysPool(toys2);
 console.log(room.budget);
+//let filtArr2 = room.addToyFilterCriteria();
+//console.log(filtArr2);
 
+// (()=> {
+//     cr.price = "10";
+//         let filteredArr = toys.filter(function (item) {
+//             for (let key in cr) {
+//                 if (item[key] === undefined || item[key] != cr[key])
+//                     return false;
+//             }
+//             return true;
+//         })
+//         console.log(filteredArr);
+//     })();
+
+
+// let arr = room.filterToys();
+// console.log(arr);
 
 (async () => {
     let isMenu = true;
     while (isMenu) {
-        const menu = prompt('Please select option: 1 - show list of toys 2- show list of kids 3 - Add new toy 0 - exit from menu ');
+        const menu = await prompt('Please select option: 1 - show list of toys 2- show list of kids 3 - Add new toy  4 - Filter toys 0 - exit from menu ');
         switch (menu) {
             case '1':
                 console.table(toys);
@@ -81,11 +79,31 @@ console.log(room.budget);
                 room.addToy(toy1);
                 break;
 
+            case '4':
+                let isParamMenu = true;
+                let params = {};
+                while (isParamMenu) {
+                    const paramMenu = await prompt(' Select one or many parameters for filtering. 1 - Filter by price 2 - Filter by material 0 - finish&show result');
+                    if (paramMenu != "0") {
+                        const value = await prompt(' Please enter the value: ');
+                        params[paramMenu] = value;
+                        console.log(params);
+                    } else {
+                        console.log(params);
+                        let filtArr = room.filterToys(params);
+                        console.log(filtArr);
+                        isParamMenu = false;0
+
+                    }
+                }
+                break;
+
             case '0':
                 {
                     isMenu = false;
                     break;
                 }
+
             default:
                 console.log('I cannot recognize your answer,please try one more time...');
                 break;

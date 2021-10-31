@@ -64,14 +64,25 @@ class GameRoom {
             console.log('Budget is not enough');
         }
     }
-    
+
 
     toysFilterByPrice(price) {
         return this.toysPool.find((toy) => toy.budget >= price);
     }
 
-    toysFilter(params){
-        let N = pwrw
+
+    filterToys(cr) {
+        {
+            console.log('inside filter toys');
+            console.log(cr);
+            return this.toysPool = this.toysPool.filter(function (item) {
+                for (let key in cr) {
+                    if (item[key] === undefined || item[key] != cr[key])
+                        return false;
+                }
+                return true;
+            })
+        }
     }
 }
 
