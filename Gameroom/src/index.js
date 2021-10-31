@@ -10,12 +10,13 @@ const Ball = require('./toy/ball');
 const GameRoomBuilder = require('./gameRoom/gameRoomBuilder');
 const TheatreDoll = require('./toy/doll/theatreDoll');
 const KewpieDoll = require('./toy/doll/kewpieDoll');
-const BuppyDoll = require ('./toy/doll/buppyDoll');
+const BuppyDoll = require('./toy/doll/buppyDoll');
+const prompt = require('prompt-sync')();
 
 let kids = [
     new Kid('Darya', 'Lapitskaya', new Date('September 08, 1996')),
     new Kid('Maria', 'Zayats', new Date('March 05, 1994')),
-    new Kid('Roman', 'Lapitski', new Date('March 10, 1993')),
+    new Kid('Roman', 'BlaBla', new Date('March 10, 1993')),
 ];
 
 let kids2 = [
@@ -29,47 +30,66 @@ let toys = [
     new Toy(4, 'large', '18+', 'wood', 'red', 'Ford'),
     new Toy(10, 'small', '18+', 'metal', 'blue', 'BMW'),
     new Toy(15, 'big', '10', 'wood', 'orange', 'Nike'),
+    new Toy(10, 'big', '3', 'wood', 'blue', 'Barbie'),
 ];
 
-//let room = new GameRoom('Minsk', 50, 10);
-let room = new GameRoomBuilder().addKidsPool(kids).addToysPool(toys).build();
-console.log(room.kidsPool);
-room.addKidsPool(kids2);
-// console.log(room.budget);
-// console.log(room.location);
-// room.addBudget(60);
-// room.location = 'Minsk';
-// console.log(room.budget);
-// console.log(room.location);
-console.log(room.kidsPool);
-// console.log(room.budget);
-// room.budget = 8;
-// console.log(room.budget);
-//const dateOfBirth = new Date('September 08, 1996');
-// const dateOfBirthMother = new Date('May 05, 1975');
-// let kid = new Kid('Darya', 'Lapitskaya', new Date('September 08, 1996'));
-// let kid2 = new Kid('Darya22', 'Lapitskaya22', dateOfBirth);
-// console.log(kid.fullName);
-// let toy1 = new Toy(4, 'large', '18+', 'wood', 'red', 'Ford');
-// // let toy2 = new Toy(10, 'small', '18+', 'metal', 'blue', 'BMW');
-// room.addKid(kid);
-// room.addKid(kid2);
-// room.addToys(toy1);
-// room.addToys(toy2);
-//console.log(room.toysPool);
-// console.log(room.budget);
-// let parent = new Parent('Nadya', 'Duckstein', dateOfBirth);
-// parent.addChild(kid);
-// console.log(parent.child);
-// console.log(kid.surname);
-// console.log(kid.dateOfBirth);
-// console.log(kid.category);
-// kid.category = 'Adult';
-// console.log(kid.category);
+
+let toys2 = [
+    new Toy(1, 'large', '18+', 'wood', 'red', 'new1'),
+    new Toy(1, 'small', '18+', 'metal', 'blue', 'new2'),
+    new Toy(10, 'big', '10', 'wood', 'orange', 'new3'),
+];
+
+let filter =
+{
+    "price": 10,
+    "color": "blue"
+};
+filter.material = "wood";
+
+let filteredArr = [];
+filteredArr = toys.filter(function (item) {
+    for (let key in filter) {
+        if (item[key] === undefined || item[key] != filter[key])
+            return false;
+    }
+    return true;
+});
+
+console.log(filteredArr);
+
+let toy1 = new Toy(100, 'big', '10', 'wood', 'orange', 'new3');
+let room = new GameRoomBuilder(12).addKidsPool(kids).addToysPool(toys).build();
+console.log(room.budget);
+room.addToysPool(toys2);
+console.log(room.budget);
 
 
+(async () => {
+    let isMenu = true;
+    while (isMenu) {
+        const menu = prompt('Please select option: 1 - show list of toys 2- show list of kids 3 - Add new toy 0 - exit from menu ');
+        switch (menu) {
+            case '1':
+                console.table(toys);
+                break;
+            case '2':
+                console.table(kids);
+                break;
 
+            case '3':
+                room.addToy(toy1);
+                break;
 
+            case '0':
+                {
+                    isMenu = false;
+                    break;
+                }
+            default:
+                console.log('I cannot recognize your answer,please try one more time...');
+                break;
+        }
+    }
 
-
-
+})();

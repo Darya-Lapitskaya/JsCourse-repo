@@ -1,4 +1,4 @@
-const Toy = require('Gameroom\src\toy\toy.js');
+const Toy = require('E:/JsCourse/JsCourse-repo/Gameroom/src/toy/toy');
 
 class Doll extends Toy {
     constructor(price, size, ageCategory, material, color, manufacturer, type, isInteractive = false) {

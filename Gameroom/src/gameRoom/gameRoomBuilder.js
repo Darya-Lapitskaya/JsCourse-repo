@@ -1,13 +1,29 @@
 const GameRoom = require('./gameRoom');
+const Toy = require('E:/JsCourse/JsCourse-repo/Gameroom/src/toy/toy');
 
 class GameRoomBuilder {
-    constructor() {
+    constructor(budget) {
         this.gameRoom = new GameRoom();
+        this.gameRoom.budget = budget;
     }
 
     addToysPool(toys) {
-        this.gameRoom.toysPool = [...this.gameRoom.toysPool, ...toys];
+
+        let priceOfToys = 0;
+        let newArr = [];
+        for (let i = 0; i < toys.length; i++) {
+            priceOfToys = priceOfToys + toys[i].price;
+            if (priceOfToys <= this.gameRoom.budget) {
+                newArr.push(toys[i]);
+                this.gameRoom.budget = this.gameRoom.budget - toys[i].price;
+            } 
+        }
+        
+        this.gameRoom.toysPool = [...this.gameRoom.toysPool, ...newArr];
+        console.log(`Successfully added toys: ${newArr.length}`);
+        console.log(`Number of toys not added because of price limitation: ${toys.length - newArr.length}`);
         return this;
+
     }
 
     addKidsPool(kids) {
@@ -17,7 +33,11 @@ class GameRoomBuilder {
     }
 
     addToy(toy) {
-        this.gameRoom.toysPool.push(toy);
+        if (toy.price <= budget) {
+            this.gameRoom.toysPool.push(toy);
+        } else {
+            console.log('Budget is not enough');
+        }
         return this;
     }
 
@@ -26,7 +46,7 @@ class GameRoomBuilder {
         return this;
     }
 
-    build(){
+    build() {
         return this.gameRoom;
     }
 }
