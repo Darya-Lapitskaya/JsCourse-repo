@@ -68,6 +68,11 @@ class GameRoom {
         return this.toysPool.find((toy) => toy.budget >= price);
     }
 
+
+    getToysPool() {
+        return this.toysPool;
+    }
+
     filterToys(cr) {
         {
             console.log('inside filter toys');
@@ -80,6 +85,20 @@ class GameRoom {
                 return true;
             })
         }
+    }
+
+    sortToysbyPrice(order) {
+        switch (order) {
+            case 'asc':
+               console.table( this.toysPool.sort((a,b) => (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0)));
+                break;
+            case 'desc':
+                console.table( this.toysPool.sort((a,b) => (a.price < b.price) ? 1 : ((b.price < a.price) ? -1 : 0)));
+                break;
+            default:
+                console.log('No correct option is entered');
+        }
+
     }
 }
 

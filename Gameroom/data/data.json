@@ -41,6 +41,7 @@
       "material": "wood",
       "color": "green",
       "manufacturer": "Barbie",
+	  "type": "baby",
       "isInteractive": true
     },
     {
@@ -50,6 +51,7 @@
       "material": "wood",
       "color": "green",
       "manufacturer": "Barbie",
+	  "type": "baby21",
       "isInteractive": false
     }
   ],
