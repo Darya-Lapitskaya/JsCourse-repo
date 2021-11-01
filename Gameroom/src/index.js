@@ -13,6 +13,56 @@ const KewpieDoll = require('./toy/doll/kewpieDoll');
 const BuppyDoll = require('./toy/doll/buppyDoll');
 const prompt = require('prompt-sync')();
 
+const data = require('E:/JsCourse/JsCourse-repo/Gameroom/data/test.json');
+
+// console.log(Object.keys(data));
+// console.log(Object.values(data));
+let RRR = Object.entries(data);
+let TTT = Object.entries(RRR[1]);
+let YYY =  Object.entries(TTT[1]);
+console.log(RRR[1][1][1]);
+
+
+let listOfTypes = Object.keys(data);
+let jsonToysPool = [];
+// listOfTypes.forEach(element => {
+//     jsonToysPool.push(new element(4, 'large', '18+', 'wood', 'red', 'Ford'));
+// });
+
+// for (let i = 0; i < listOfTypes.length; i++) {
+//     console.log(listOfTypes[i]);
+//     if (listOfTypes[i] == 'Toy') {
+//         let N = new Toy(4, 'large', '18+', 'wood', 'red', 'Ford');
+//         jsonToysPool.push(N);
+//     } else if (listOfTypes[i] == 'Doll') {
+//         let D = new Doll(4, 'large', '10+', 'wood', 'red', 'Barbie', 'buppy', true);
+//         jsonToysPool.push(D);
+//     }
+// }
+
+//console.log(jsonToysPool);
+
+for (let i = 0; i < listOfTypes.length; i++) {
+    console.log(listOfTypes[i]);
+    if (listOfTypes[i] == 'Toy') {
+for (let k = 0; k<listOfTypes[i][1].length; k++){
+    console.log( listOfTypes[i][1][k]);
+}
+
+        // let N = new Toy(4, 'large', '18+', 'wood', 'red', 'Ford');
+        // jsonToysPool.push(N);
+    } else if (listOfTypes[i] == 'Doll') {
+        // let D = new Doll(4, 'large', '10+', 'wood', 'red', 'Barbie', 'buppy', true);
+        // jsonToysPool.push(D);
+    }
+}
+
+// console.log(jsonToysPool);
+
+
+
+
+
 let kids = [
     new Kid('Darya', 'Lapitskaya', new Date('September 08, 1996')),
     new Kid('Maria', 'Zayats', new Date('March 05, 1994')),
@@ -31,6 +81,7 @@ let toys = [
     new Toy(10, 'small', '18+', 'metal', 'blue', 'BMW'),
     new Toy(15, 'big', '10', 'wood', 'orange', 'Nike'),
     new Toy(10, 'big', '3', 'wood', 'blue', 'Barbie'),
+    new BuppyDoll(10, 'small', '3', 'wood', 'blue', 'Barbie', 'aaa', false)
 ];
 
 
@@ -44,24 +95,6 @@ let toy1 = new Toy(100, 'big', '10', 'wood', 'orange', 'new3');
 let room = new GameRoomBuilder(100).addKidsPool(kids).addToysPool(toys).build();
 console.log(room.budget);
 console.log(room.budget);
-//let filtArr2 = room.addToyFilterCriteria();
-//console.log(filtArr2);
-
-// (()=> {
-//     cr.price = "10";
-//         let filteredArr = toys.filter(function (item) {
-//             for (let key in cr) {
-//                 if (item[key] === undefined || item[key] != cr[key])
-//                     return false;
-//             }
-//             return true;
-//         })
-//         console.log(filteredArr);
-//     })();
-
-
-// let arr = room.filterToys();
-// console.log(arr);
 
 (async () => {
     let isMenu = true;
@@ -92,7 +125,7 @@ console.log(room.budget);
                         console.log(params);
                         let filtArr = room.filterToys(params);
                         console.log(filtArr);
-                        isParamMenu = false;0
+                        isParamMenu = false;
 
                     }
                 }

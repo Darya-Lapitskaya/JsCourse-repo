@@ -26,6 +26,17 @@ class GameRoomBuilder {
 
     }
 
+
+    
+    addToysPoolJson(toys){
+
+
+
+        this.gameRoom.toysPool = [...this.gameRoom.toysPool, ...newArr];
+        return this;
+
+    }
+
     addKidsPool(kids) {
         this.gameRoom.kidsPool = [...this.gameRoom.kidsPool, ...kids];
         return this;

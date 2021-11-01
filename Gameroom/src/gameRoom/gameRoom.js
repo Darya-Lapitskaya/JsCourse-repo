@@ -39,7 +39,6 @@ class GameRoom {
         this.kidsPool = [...this.kidsPool, ...kids];
     }
 
-
     addToysPool(toys) {
 
         let priceOfToys = 0;
@@ -65,11 +64,9 @@ class GameRoom {
         }
     }
 
-
     toysFilterByPrice(price) {
         return this.toysPool.find((toy) => toy.budget >= price);
     }
-
 
     filterToys(cr) {
         {
