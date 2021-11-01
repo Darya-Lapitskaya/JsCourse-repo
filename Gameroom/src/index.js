@@ -34,66 +34,139 @@ let toys = [
     new BuppyDoll(10, 'small', '3', 'wood', 'blue', 'Barbie', 'aaa', false)
 ];
 
-
 let toys2 = [
     new Toy(1, 'large', '18+', 'wood', 'red', 'new1'),
     new Toy(1, 'small', '18+', 'metal', 'blue', 'new2'),
     new Toy(10, 'big', '10', 'wood', 'orange', 'new3'),
 ];
-
 let toy1 = new Toy(100, 'big', '10', 'wood', 'orange', 'new3');
-let room = new GameRoomBuilder(100).addKidsPool(kids).addToysPool(toys).build();
-let room2 = new GameRoomBuilder(200).addKidsPool(kids).addToysPoolJson().build();
-console.log(room2.getToysPool());
 
 (async () => {
+    let isStartMenu = true;
     let isMenu = true;
-    while (isMenu) {
-        const menu = await prompt('Please select option: 1 - show list of toys 2- show list of kids 3 - Add new toy  4 - Filter toys 0 - exit from menu ');
-        switch (menu) {
+    while (isStartMenu) {
+        const budget = await prompt('Welcome to Gameroom! Please enter the start budget for your gameroom ');
+        const option = await prompt('Choose the way for creation of Toys pool: \n1-from array declared in index.js \n2 - from JSON file \n 0-exit');
+        switch (option) {
             case '1':
-                console.table(toys);
+                let room = new GameRoomBuilder(budget).addKidsPool(kids).addToysPool(toys).build();
+                isStartMenu = false;
                 break;
             case '2':
-                console.table(kids);
+                room = new GameRoomBuilder(budget).addKidsPool(kids).addToysPoolJson().build();
+                isStartMenu = false;
                 break;
+            case '0':
+                isStartMenu = false;
+                break;
+            default:
+                console.log('Cannot recognize your answer. Please try again.');
+                break;
+        }
+    }
+    while (isMenu) {
+        const menu = await prompt('Please select the section: \n1 - Kids \n2- Toys \n3 - Budget \n0 - exit from menu ');
+        // const menu = await prompt('Please select option: \n1 - show list of toys \n2- show list of kids \n3 - Add new toy \n4 - Filter toys \n0 - exit from menu ');
+        switch (menu) {
+            case '1':
+                let isKidMenu = true;
+                while (isKidMenu) {
+                    const kidMenu = await prompt('\nPlease select the option: \n1 - View list of Kids \n2 - Add Kid \n3 - Get info about Kid parent \n4 - Add Parent info for Kid  \n0 - back ');
+                    switch (kidMenu) {
+                        case '1':
+                            console.table(kids);
+                            break;
+                        case '2':
+                            break;
 
+                        case '3':
+                            break;
+                        case '4':
+                            break;
+
+                        case '0':
+                            isToyMenu = false;
+                            break;
+                        default:
+                            console.log('Cannot recognize your answer. Please try again.');
+                            break;
+                    }
+                }
+            case '2':
+                let isToyMenu = true;
+                while (isToyMenu) {
+                    const toyMenu = await prompt('Please select the option: \n1 - View list of Toys \n2 - Add Toy \n3 - Sort Toys by Price \n4 - Filter Toys  \n0 - back ');
+                    switch (toyMenu) {
+                        case '1':
+                            console.table(toys);
+                            break;
+                        case '2':
+                            room.addToy(toy1);
+                            break;
+
+                        case '3':
+                            const sortOption = await prompt('Please enter "asc" or "desc" for sort toys by price');
+                            room.sortbyPrice(sortOption);
+                            break;
+                        case '4':
+                            let isParamMenu = true;
+                            let params = {};
+                            while (isParamMenu) {
+                                const paramMenu = await prompt(' Select one or many parameters for filtering. 1 - Filter by price 2 - Filter by material 0 - finish&show result');
+                                if (paramMenu != "0") {
+                                    const value = await prompt(' Please enter the value: ');
+                                    params[paramMenu] = value;
+                                    console.log(params);
+                                } else {
+                                    console.log(params);
+                                    let filtArr = room.filterToys(params);
+                                    console.log(filtArr);
+                                    isParamMenu = false;
+                                }
+                            }
+                            break;
+
+                        case '0':
+                            isToyMenu = false;
+                            break;
+                        default:
+                            console.log('Cannot recognize your answer. Please try again.');
+                            break;
+                    }
+                }
+                break;
             case '3':
-                room.addToy(toy1);
-                break;
+                let isBudgetMenu = true;
+                while (isBudgetMenu) {
+                    const budgetMenu = await prompt('Please select the option: \n1 - View current budget for gameroom \n2 - Donate to the gameroom \n0 - back ');
+                    switch (budgetMenu) {
+                        case '1':
+                            console.table(toys);
+                            break;
+                        case '2':
+                            break;
 
-            case '4':
-                let isParamMenu = true;
-                let params = {};
-                while (isParamMenu) {
-                    const paramMenu = await prompt(' Select one or many parameters for filtering. 1 - Filter by price 2 - Filter by material 0 - finish&show result');
-                    if (paramMenu != "0") {
-                        const value = await prompt(' Please enter the value: ');
-                        params[paramMenu] = value;
-                        console.log(params);
-                    } else {
-                        console.log(params);
-                        let filtArr = room.filterToys(params);
-                        console.log(filtArr);
-                        isParamMenu = false;
+                        case '3':
+                            break;
+                        case '4':
+                            break;
 
+                        case '0':
+                            isToyMenu = false;
+                            break;
+                        default:
+                            console.log('Cannot recognize your answer. Please try again.');
+                            break;
                     }
                 }
                 break;
 
-                case '5':
-                    const sortOption = await prompt('Please enter "asc" or "desc" for sort toys by price');
-                    room.sortbyPrice(sortOption);
-                    break;
-
             case '0':
-                {
-                    isMenu = false;
-                    break;
-                }
+                isMenu = false;
+                break;
 
             default:
-                console.log('I cannot recognize your answer,please try one more time...');
+                console.log('Cannot recognize your answer. Please try again.');
                 break;
         }
     }
