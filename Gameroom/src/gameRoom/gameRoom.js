@@ -73,10 +73,12 @@ class GameRoom {
         return this.toysPool;
     }
 
+    getKidsPool() {
+        return this.kidsPool;
+    }
+
     filterToys(cr) {
-        {
-            console.log('inside filter toys');
-            console.log(cr);
+        { 
             return this.toysPool = this.toysPool.filter(function (item) {
                 for (let key in cr) {
                     if (item[key] === undefined || item[key] != cr[key])
@@ -99,6 +101,15 @@ class GameRoom {
                 console.log('No correct option is entered');
         }
 
+    }
+
+
+    addKid(kid) {
+        this.kidsPool.push(kid);
+    }
+
+    getKidParentsInfo(kid){
+        this.kidsPool[kid]. getParentsInfo();
     }
 }
 

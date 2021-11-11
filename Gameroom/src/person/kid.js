@@ -21,6 +21,13 @@ class Kid extends Person {
         } else { console.log('Kid cannot have more than 2 parents'); }
     }
 
+    getParentsInfo() {
+
+        if (this.parentsPool.length == 0) {
+            console.log('There is no parents info.');
+        } else { console.log(this.parentsPool); };
+    }
+
 }
 
 module.exports = Kid;

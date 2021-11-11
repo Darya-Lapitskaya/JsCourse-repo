@@ -75,42 +75,6 @@ class GameRoomBuilder {
         } return this;
     }
 
-
-
-
-
-
-    // addToysPoolJson() {
-    //     let listOfTypes = Object.entries(data);
-    //     for (let i = 0; i < listOfTypes.length; i++) {
-    //         if (listOfTypes[i][0] == 'Toy') {
-    //             for (let k = 0; k < listOfTypes[i][1].length; k++) {
-    //                 let newArr = Object.entries(listOfTypes[i][1][k]);
-    //                 let D = new Toy(newArr[0][1], newArr[1][1], newArr[2][1], newArr[3][1], newArr[4][1], newArr[5][1]);
-    //                 this.gameRoom.toysPool.push(D);
-
-    //             }
-    //         } else if (listOfTypes[i][0] == 'Doll') {
-    //             for (let k = 0; k < listOfTypes[i][1].length; k++) {
-    //                 let newArr = Object.entries(listOfTypes[i][1][k]);
-    //                 let D = new Doll(newArr[0][1], newArr[1][1], newArr[2][1], newArr[3][1], newArr[4][1], newArr[5][1], newArr[6][1]);
-    //                 this.gameRoom.toysPool.push(D);
-
-    //             }
-    //         } else if (listOfTypes[i][0] == 'Car') {
-    //             for (let k = 0; k < listOfTypes[i][1].length; k++) {
-    //                 let newArr = Object.entries(listOfTypes[i][1][k]);
-    //                 let D = new Car(newArr[0][1], newArr[1][1], newArr[2][1], newArr[3][1], newArr[4][1], newArr[5][1], newArr[6][1]);
-    //                 this.gameRoom.toysPool.push(D);
-    //             }
-    //         }
-    //     }
-
-    //     //this.gameRoom.toysPool = [...this.gameRoom.toysPool];
-    //     return this;
-
-    // }
-
     addKidsPool(kids) {
         this.gameRoom.kidsPool = [...this.gameRoom.kidsPool, ...kids];
         return this;
